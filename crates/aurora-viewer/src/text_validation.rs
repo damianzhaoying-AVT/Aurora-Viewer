@@ -84,7 +84,7 @@ mod tests {
 
     #[test]
     fn restricted_text_generated_folder_labels_are_cleaned_without_rejecting_creation() {
-        for language in ["en", "fr", "ja"] {
+        for language in ["en", "fr", "ja", "es"] {
             let name = aurora_i18n::text_in(language, "common-new-folder");
             let change = actions::create_folder(Uuid::from_u128(1), name).expect("localized folder");
             assert!(

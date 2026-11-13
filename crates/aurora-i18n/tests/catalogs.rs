@@ -93,16 +93,16 @@ fn saved_choice_system_locale_and_english_fallback() {
     assert_eq!(resolve_language("unknown", "fr", &languages), "en");
     assert_eq!(resolve_language("default", "", &languages), "en");
     assert_eq!(resolve_language("pt-BR", "fr", &["en", "pt-BR", "pt"]), "pt-BR");
-    let languages = ["en", "fr", "ja"];
+    let languages = ["en", "fr", "ja", "es"];
     assert_eq!(resolve_language("default", "ja-JP", &languages), "ja");
     assert_eq!(resolve_language("ja", "en-US", &languages), "ja");
     assert!(SOURCES.iter().any(|&(code, _)| code == "ja"), "Japanese catalog is bundled");
 }
 
 #[test]
-fn fluent_renders_english_and_french_plural_rules() {
+fn fluent_renders_english_french_and_spanish_plural_rules() {
     use fluent_bundle::{FluentArgs, FluentBundle, FluentResource};
-    for &(code, source) in SOURCES.iter().filter(|&&(code, _)| code == "en" || code == "fr") {
+    for &(code, source) in SOURCES.iter().filter(|&&(code, _)| matches!(code, "en" | "fr" | "es")) {
         let mut bundle = FluentBundle::new(vec![code.parse().unwrap()]);
         bundle.set_use_isolating(false);
         bundle.add_resource(FluentResource::try_new(source.to_owned()).unwrap()).unwrap();
@@ -117,7 +117,10 @@ fn fluent_renders_english_and_french_plural_rules() {
                 ("en", 1) => "item",
                 ("en", _) => "items",
                 ("fr", 0 | 1) => "élément",
-                _ => "éléments",
+                ("fr", _) => "éléments",
+                ("es", 1) => "elemento",
+                ("es", _) => "elementos",
+                _ => unreachable!("Japanese has its own no-plural test"),
             };
             assert_eq!(actual, format!("{count} {word}"));
         }
@@ -209,6 +212,16 @@ fn japanese_system_locales_select_the_japanese_catalog() {
     // Region and underscore variants resolve without touching the global language.
     assert_eq!(aurora_i18n::text_in("ja_JP", "language-system"), "システムの言語");
     assert_eq!(aurora_i18n::text_in("JA-jp", "language-choice"), "言語");
+}
+
+#[test]
+fn spanish_system_locales_select_the_spanish_catalog() {
+    let languages = ["en", "fr", "ja", "es"];
+    assert_eq!(resolve_language("default", "es-ES", &languages), "es");
+    assert_eq!(resolve_language("", "es_MX", &languages), "es");
+    assert_eq!(resolve_language("es", "en-US", &languages), "es");
+    assert!(aurora_i18n::available_languages().any(|language| language == ("es", "Español")));
+    assert_eq!(aurora_i18n::text_in("ES-ar", "language-name"), "Español");
 }
 
 #[test]

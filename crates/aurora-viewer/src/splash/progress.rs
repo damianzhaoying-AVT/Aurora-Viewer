@@ -348,7 +348,7 @@ mod tests {
 
     #[test]
     fn every_step_has_its_text_in_every_language() {
-        for language in ["en", "fr", "ja"] {
+        for language in ["en", "fr", "ja", "es"] {
             for step in [
                 Step::Starting,
                 Step::Settings,

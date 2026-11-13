@@ -25,7 +25,7 @@ You have **nothing to do on GitHub**: your only job is to test what the agent
 shows you, and to log in to the grid when needed.
 
 Everything in the repository and on GitHub is written in English. You can talk
-to your agent in French or in English: it answers in your language.
+to your agent in your language: it answers in your language.
 
 ## Life of a task
 

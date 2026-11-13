@@ -1,11 +1,11 @@
 # Translating the viewer
 
 Each language has a Fluent catalogue in `crates/aurora-i18n/locales/`.
-English is in `en.ftl`, French in `fr.ftl` and Japanese in `ja.ftl`. The
-files are embedded at build time; adding `de.ftl`, for example, adds a
-language to the Preferences without changing the Rust code. The file name
-must be a language identifier, such as `de` or `pt-BR`, and `language-name`
-holds the name that its speakers recognise.
+English is in `en.ftl`, French in `fr.ftl`, Japanese in `ja.ftl` and Spanish
+in `es.ftl`. The files are embedded at build time; adding `de.ftl`, for
+example, adds a language to the Preferences without changing the Rust code.
+The file name must be a language identifier, such as `de` or `pt-BR`, and
+`language-name` holds the name that its speakers recognise.
 
 The embedded fonts only cover European scripts. Other scripts, Japanese
 included, are drawn by the system fallback fonts (Meiryo UI or Yu Gothic UI
@@ -25,7 +25,7 @@ simulator through `UpdateAgentLanguage`, after login, a region change or a
 change to the preferences, following the Legacy Viewer's `LLAgentLanguage::update`.
 
 A new text uses an explicit key and its version in every catalogue
-(English, French and Japanese) in the same PR, at the same place as in
+(English, French, Japanese and Spanish) in the same PR, at the same place as in
 `en.ftl`. A key missing from one catalogue fails the parity test, in
 `scripts/check.ps1` and in the merge queue.
 
@@ -46,6 +46,10 @@ resident-online = { $name } est en ligne.
 # ja.ftl
 inventory-empty = インベントリは空です。
 resident-online = { $name }さんがオンラインになりました。
+
+# es.ftl
+inventory-empty = El inventario está vacío.
+resident-online = { $name } está conectado.
 ```
 
 Variable names must be identical in every language.
@@ -70,6 +74,12 @@ inventory-count = { $count ->
 
 # ja.ftl: no plural, plain text
 inventory-count = { $count }個のアイテム
+
+# es.ftl: 1 is singular; 0 and 2 are plural
+inventory-count = { $count ->
+    [one] { $count } elemento
+   *[other] { $count } elementos
+    }
 ```
 
 Japanese, beyond the plural:
@@ -128,6 +138,7 @@ $env:AURORA_DEMO_OPTIONS = '1'
 cargo run -p aurora-viewer -- --language en --title "Test langue-viewer"
 cargo run -p aurora-viewer -- --language fr --title "Test langue-viewer"
 cargo run -p aurora-viewer -- --language ja --title "Test langue-viewer"
+cargo run -p aurora-viewer -- --language es --title "Test langue-viewer"
 ```
 
 Remove `--language` to check the saved choice and its change while the

@@ -411,7 +411,7 @@ are planned or in progress: they are not in the viewer yet.
 - **Borderless fullscreen**: Alt+Enter fills the screen without a title bar
   or borders, at once and without a restart, and gives the window back
   exactly as it was (Preferences › Graphics).
-- **In English, French and Japanese (日本語)**: the whole interface follows
+- **In English, French, Japanese (日本語) and Spanish**: the whole interface follows
   your system language or your choice, applied at once. Japanese uses Second
   Life's official Japanese terms (インベントリ, 区画, フレンド…), Japanese
   interface fonts and Japanese dates ([details](#language)).
@@ -720,7 +720,7 @@ frame on your own PC.
   tools, folder colours, outfit backups to JSON, dedicated Marketplace and
   listings windows, compact import launcher and per-type editors; sound
   waveform previews, trimming, gain and splitting.
-- **Interface** — in English, French and Japanese; flat Aurora theme, Inter font, Tabler icons, glass island bars,
+- **Interface** — in English, French, Japanese and Spanish; flat Aurora theme, Inter font, Tabler icons, glass island bars,
   customizable bottom and side toolbars, classic layout options, Aurora
   search and Places windows, mini-map, world map, preferences and debug
   overlays; an immersive mode that keeps only the chat; Aurora team and
@@ -784,10 +784,10 @@ Manager) and, when you tick it, a 30-day MFA authorization.
 
 ### Language
 
-The interface is available in English, French and Japanese (日本語): system
-language detection, a choice saved in Preferences and applied at once. The
-Japanese translation covers every message, with the official Second Life
-Japanese terms; it draws with Japanese interface fonts (Meiryo UI, Yu Gothic
+The interface is available in English, French, Japanese (日本語) and Spanish
+(Español): system language detection, a choice saved in Preferences and
+applied at once. The Japanese translation covers every message, with the
+official Second Life Japanese terms; it draws with Japanese interface fonts (Meiryo UI, Yu Gothic
 UI or MS UI Gothic) and writes dates the Japanese way. Fluent catalogues make
 it possible to add a language; see [the translation guide](docs/TRANSLATING.md).
 
@@ -1159,7 +1159,7 @@ exe before publishing; the local build also writes it to `version.txt`.
 | `--fps-limit <fps>` | Caps this instance at 1–500 fps without changing saved preferences |
 | `--vr-mode=first-person\|avatar\|flycam` | Starting camera mode when used with `--vr` |
 | `--vr` | Enters VR once the world shows, with a headset connected (Windows and Linux) |
-| `--language <code>` | Forces the language of this instance (`en`, `fr`, `ja`, or another language added to the catalogues), without changing the saved choice |
+| `--language <code>` | Forces the language of this instance (`en`, `fr`, `ja`, `es`, or another language added to the catalogues), without changing the saved choice |
 | `--grid <name>` | Selects the login grid: `agni`, `aditi`, a saved grid name/nickname or a login URI (`--loginuri <uri>` too) |
 | `--login <first> <last> <password>` | Logs in with this account as soon as the login screen opens |
 | `<slurl>`, `--url <slurl>` | Starts at this place, or hands it to the viewer already running; must come last |
